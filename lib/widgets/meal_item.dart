@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/meal.dart';
-import '../screens/meal_detail_screen.dart';
+import '../models.dart';
+import '../screens.dart';
 
 class MealItem extends StatelessWidget {
   MealItem(this.meal, this.removeItem);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/meal.dart';
+
+import '../models.dart';
 
 class SectionTile extends StatelessWidget {
   SectionTile(this.title);

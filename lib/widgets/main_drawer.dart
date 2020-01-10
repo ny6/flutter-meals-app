@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/tabs_screen.dart';
-import '../screens/filters_screen.dart';
+import '../screens.dart';
 
 class ListTileBuilder extends StatelessWidget {
   ListTileBuilder(this.title, this.icon, this.routeName);

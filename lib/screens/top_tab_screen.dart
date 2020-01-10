@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './category_screen.dart';
-import './favorite_screen.dart';
+import '../screens.dart';
 
 class TopTabsScreen extends StatelessWidget {
   @override
