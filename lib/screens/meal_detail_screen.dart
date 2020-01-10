@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  static final routeName = '/meal_detail';
+  static const routeName = '/meal_detail';
 
   Widget buildSectionTitle(BuildContext ctx, title) => Container(
         margin: EdgeInsets.symmetric(vertical: 10),
