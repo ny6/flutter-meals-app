@@ -4,9 +4,10 @@ import '../models/meal.dart';
 import '../screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
-  MealItem(this.meal);
+  MealItem(this.meal, this.removeItem);
 
   final Meal meal;
+  final Function removeItem;
 
   String get complexityText {
     switch (meal.complexity) {
@@ -34,15 +35,16 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  void selectMeal() {}
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(
-        MealDetailScreen.routeName,
-        arguments: meal,
-      ),
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(MealDetailScreen.routeName, arguments: meal)
+            .then((result) {
+          if (result != null) removeItem(result);
+        });
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
