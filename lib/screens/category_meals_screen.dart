@@ -35,12 +35,6 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
     }
   }
 
-  void _removeMeal(String id) {
-    setState(() {
-      meals.removeWhere((meal) => meal.id == id);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +42,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
         title: Text(categoryTitle),
       ),
       body: ListView.builder(
-        itemBuilder: (ctx, i) => MealItem(meals[i], _removeMeal),
+        itemBuilder: (ctx, i) => MealItem(meals[i]),
         itemCount: meals.length,
       ),
     );

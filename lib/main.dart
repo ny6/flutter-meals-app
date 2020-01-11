@@ -19,6 +19,7 @@ class _MyAppState extends State<MyApp> {
     'vegetarian': false,
   };
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoritesMeals = [];
 
   void _setFilters(BuildContext ctx, Map<String, bool> filterData) {
     setState(() {
@@ -35,6 +36,21 @@ class _MyAppState extends State<MyApp> {
 
     Navigator.of(ctx).pushReplacementNamed(TabsScreen.routeName);
   }
+
+  void _toggleFavorite(String id) {
+    final existingIndex = _favoritesMeals.indexWhere((meal) => meal.id == id);
+
+    setState(() {
+      if (existingIndex >= 0) {
+        _favoritesMeals.removeAt(existingIndex);
+      } else {
+        _favoritesMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == id));
+      }
+    });
+  }
+
+  bool _isMealFavorite(String id) =>
+      _favoritesMeals.any((meal) => meal.id == id);
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +76,15 @@ class _MyAppState extends State<MyApp> {
             ),
       ),
       routes: {
-        TabsScreen.routeName: (ctx) => TabsScreen(),
+        TabsScreen.routeName: (ctx) => TabsScreen(_favoritesMeals),
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(_toggleFavorite, _isMealFavorite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
       },
       onUnknownRoute: (settings) =>
-          MaterialPageRoute(builder: (ctx) => TabsScreen()),
+          MaterialPageRoute(builder: (ctx) => TabsScreen(_favoritesMeals)),
     );
   }
 }
